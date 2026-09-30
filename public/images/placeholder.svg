@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0c0e17" />
+      <stop offset="50%" stop-color="#111422" />
+      <stop offset="100%" stop-color="#08090f" />
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.3" />
+      <stop offset="50%" stop-color="#9d4edd" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.3" />
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(0, 240, 255, 0.07)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#bgGrad)"/>
+  <rect width="800" height="500" fill="url(#grid)"/>
+
+  <!-- Tech corner brackets -->
+  <path d="M 30 50 L 30 30 L 50 30" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <path d="M 750 30 L 770 30 L 770 50" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <path d="M 30 450 L 30 470 L 50 470" fill="none" stroke="#9d4edd" stroke-width="2"/>
+  <path d="M 750 470 L 770 470 L 770 450" fill="none" stroke="#9d4edd" stroke-width="2"/>
+
+  <!-- Crosshairs -->
+  <circle cx="400" cy="220" r="60" fill="none" stroke="rgba(157, 78, 221, 0.3)" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <circle cx="400" cy="220" r="4" fill="#00f0ff"/>
+  <line x1="320" y1="220" x2="480" y2="220" stroke="rgba(0, 240, 255, 0.2)" stroke-width="1"/>
+  <line x1="400" y1="140" x2="400" y2="300" stroke="rgba(0, 240, 255, 0.2)" stroke-width="1"/>
+
+  <!-- Camera/Evidence Icon Graphic -->
+  <rect x="365" y="195" width="70" height="50" rx="8" fill="rgba(24, 29, 47, 0.8)" stroke="#9d4edd" stroke-width="2"/>
+  <circle cx="400" cy="220" r="14" fill="none" stroke="#00f0ff" stroke-width="2"/>
+  <rect x="385" y="187" width="30" height="8" rx="3" fill="#9d4edd"/>
+
+  <!-- Status Box -->
+  <rect x="230" y="320" width="340" height="42" rx="6" fill="rgba(12, 14, 23, 0.85)" stroke="url(#purpleGlow)" stroke-width="1.5"/>
+  <text x="400" y="346" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" fill="#00f0ff" text-anchor="middle" letter-spacing="2">
+    [ REAL CAMPUS PHOTO WILL BE ADDED ]
+  </text>
+
+  <!-- Subtitle -->
+  <text x="400" y="385" font-family="system-ui, -apple-system, sans-serif" font-size="11" fill="#94a3b8" text-anchor="middle" letter-spacing="1">
+    CHANDIGARH UNIVERSITY • MISSION 02 GROUND SURVEY
+  </text>
+  <text x="400" y="405" font-family="system-ui, -apple-system, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">
+    VERIFICATION STATUS: PENDING FIELD EVIDENCE
+  </text>
+</svg>

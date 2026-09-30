@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Manrope:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "../styles/animations.css";
+
+:root {
+  --bg-primary: #050608;
+  --bg-surface: #090b10;
+  --bg-card: rgba(12, 14, 20, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-glow: rgba(0, 240, 255, 0.25);
+  --border-cursed: rgba(157, 78, 221, 0.3);
+  --electric-blue: #00f0ff;
+  --cursed-purple: #9d4edd;
+  --cursed-red: #ef4444;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: #f3f4f6;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Minimal Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050608;
+}
+::-webkit-scrollbar-thumb {
+  background: #1b1e2a;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9d4edd;
+}
+
+/* Cinematic Glass Panels */
+.glass-panel {
+  background: rgba(10, 12, 18, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(14, 17, 26, 0.85);
+  border-color: rgba(0, 240, 255, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 240, 255, 0.15), 0 0 1px 1px rgba(157, 78, 221, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Subtle Cyber Background */
+.bg-cyber-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+}
+
+/* Cinematic Energy sweep on page load */
+@keyframes energySweep {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.energy-sweep-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00f0ff, #9d4edd, transparent);
+  animation: energySweep 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  pointer-events: none;
+}
+
+/* Modal Smooth Zoom Animation */
+@keyframes modalEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-enter {
+  animation: modalEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Fade in for text */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Gradient Typography */
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #ffffff 10%, #00f0ff 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #ffffff 15%, #c77dff 85%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle corner brackets */
+.corner-brackets-subtle {
+  position: relative;
+}
+.corner-brackets-subtle::before,
+.corner-brackets-subtle::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  pointer-events: none;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+}
+.corner-brackets-subtle::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid #00f0ff;
+  border-left: 1px solid #00f0ff;
+}
+.corner-brackets-subtle::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1px solid #9d4edd;
+  border-right: 1px solid #9d4edd;
+}
+.group:hover .corner-brackets-subtle::before,
+.group:hover .corner-brackets-subtle::after {
+  opacity: 1;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 1.5px solid #00f0ff;
+  outline-offset: 2px;
+}
+
+/* ==================================================
+   REFINED MULTI-PHASE TAB TRANSITION SYSTEM (~1.2s)
+   ================================================== */
+
+/* Overall Backdrop Darkening */
+@keyframes transitionBackdrop {
+  0% {
+    opacity: 0;
+  }
+  22% {
+    opacity: 0.82;
+  }
+  70% {
+    opacity: 0.82;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-transition-backdrop {
+  animation: transitionBackdrop 1.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 1. Home: Dark Energy Pulse -> Expand -> Collapse */
+@keyframes homePulseRing {
+  0% {
+    transform: scale(0.15);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  52% {
+    transform: scale(1.6);
+    opacity: 0.8;
+  }
+  78% {
+    transform: scale(0.5);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+}
+
+.animate-home-pulse-ring {
+  animation: homePulseRing 1.15s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes homeCyanParticles {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  65% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+.animate-home-particles {
+  animation: homeCyanParticles 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. Directory: Primary & Secondary Energy Slashes */
+@keyframes dirSlashPrimary {
+  0% {
+    transform: translate(-140%, -140%) rotate(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  55% {
+    transform: translate(0%, 0%) rotate(-25deg);
+    opacity: 1;
+  }
+  85% {
+    transform: translate(140%, 140%) rotate(-25deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(180%, 180%) rotate(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-dir-slash-1 {
+  animation: dirSlashPrimary 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+@keyframes dirSlashSecondary {
+  0% {
+    transform: translate(-140%, -140%) rotate(-20deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  55% {
+    transform: translate(12%, 12%) rotate(-20deg);
+    opacity: 0.95;
+  }
+  85% {
+    transform: translate(150%, 150%) rotate(-20deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(180%, 180%) rotate(-20deg);
+    opacity: 0;
+  }
+}
+
+.animate-dir-slash-2 {
+  /* Exactly 100ms offset from primary slash (0.15s -> 0.25s) */
+  animation: dirSlashSecondary 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+@keyframes pulseLines {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  30% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+.animate-pulse-lines {
+  animation: pulseLines 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dirParticlesScatter {
+  0% {
+    transform: scale(0.3) translate(0, 0);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.4) translate(var(--dir-x, 30px), var(--dir-y, -30px));
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0.4) translate(var(--dir-x2, 60px), var(--dir-y2, -60px));
+    opacity: 0;
+  }
+}
+
+.animate-dir-scatter {
+  animation: dirParticlesScatter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+/* 3. Offices: Purple Flame Rise & Dissolve */
+@keyframes officesFlameEdge {
+  0% {
+    transform: translateY(35%) scaleY(0.6);
+    opacity: 0;
+  }
+  25% {
+    transform: translateY(15%) scaleY(0.85);
+    opacity: 0.7;
+  }
+  55% {
+    transform: translateY(-15%) scaleY(1.25);
+    opacity: 0.95;
+  }
+  75% {
+    transform: translateY(-40%) scaleY(1.4);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-65%) scaleY(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-offices-flame {
+  animation: officesFlameEdge 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+}
+
+@keyframes officesVioletFlash {
+  0% {
+    opacity: 0;
+  }
+  45% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.28;
+  }
+  75% {
+    opacity: 0.15;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-offices-flash {
+  animation: officesVioletFlash 1.15s ease-out forwards;
+}
+
+/* 4. Food: Ember Build, Fire Wave & Scatter */
+@keyframes foodEmberRise {
+  0% {
+    transform: translateY(40px) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    transform: translateY(10px) scale(0.7);
+    opacity: 0.9;
+  }
+  60% {
+    transform: translateY(-70px) scale(1.1);
+    opacity: 0.95;
+  }
+  85% {
+    transform: translateY(-140px) scale(0.9);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-200px) scale(0.4);
+    opacity: 0;
+  }
+}
+
+.animate-food-ember {
+  animation: foodEmberRise 1.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes foodWaveFlash {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.4);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scaleY(1);
+  }
+  60% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1.5);
+  }
+}
+
+.animate-food-wave {
+  animation: foodWaveFlash 1.12s ease-out forwards;
+}
+
+/* 5. FAQ: Blue Mist Expand, Obscure & Clear */
+@keyframes faqMistEvolve {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateX(-15%);
+  }
+  30% {
+    opacity: 0.6;
+    transform: scale(1.05) translateX(-5%);
+  }
+  60% {
+    opacity: 0.85;
+    transform: scale(1.2) translateX(5%);
+  }
+  85% {
+    opacity: 0.4;
+    transform: scale(1.35) translateX(15%);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5) translateX(25%);
+  }
+}
+
+.animate-faq-mist {
+  animation: faqMistEvolve 1.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes faqSpiritWisp {
+  0% {
+    transform: translateX(-30px) translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  70% {
+    transform: translateX(40px) translateY(-15px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(100px) translateY(-30px);
+    opacity: 0;
+  }
+}
+
+.animate-faq-wisp {
+  animation: faqSpiritWisp 1.15s ease-out forwards;
+}
+
+/* Atmospheric Text Badge (visible for 300–500ms during phases 1–3) */
+@keyframes badgeRevealCinematic {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.94);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+}
+
+.animate-badge-reveal {
+  animation: badgeRevealCinematic 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Mobile Responsiveness & Lightweight Performance (0.8s–1.0s max, ~0.9s) */
+@media (max-width: 640px) {
+  .animate-transition-backdrop {
+    animation-duration: 0.9s;
+  }
+  .animate-home-pulse-ring {
+    animation-duration: 0.88s;
+  }
+  .animate-home-particles {
+    animation-duration: 0.85s;
+  }
+  .animate-pulse-lines {
+    animation-duration: 0.85s;
+  }
+  .animate-dir-slash-1 {
+    animation: dirSlashPrimary 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  }
+  .animate-dir-slash-2 {
+    animation: dirSlashSecondary 0.68s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  }
+  .animate-dir-scatter {
+    animation-duration: 0.75s;
+  }
+  .animate-offices-flame {
+    animation-duration: 0.85s;
+  }
+  .animate-offices-flash {
+    animation-duration: 0.88s;
+  }
+  .animate-food-ember {
+    animation-duration: 0.85s;
+  }
+  .animate-food-wave {
+    animation-duration: 0.85s;
+  }
+  .animate-faq-mist {
+    animation-duration: 0.88s;
+  }
+  .animate-faq-wisp {
+    animation-duration: 0.85s;
+  }
+  .animate-badge-reveal {
+    animation-duration: 0.82s;
+  }
+}
+

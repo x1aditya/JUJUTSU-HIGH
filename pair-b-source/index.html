@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Training Manual</title>
+  <!-- Fonts (needs internet; falls back to a normal serif if offline) -->
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP BAR: logo + menu. Each button calls show() from script.js -->
+  <header>
+    <div class="logo">呪 The Training Manual</div>
+    <nav>
+      <button onclick="show('quiz')">Quiz</button>
+      <button onclick="show('clubs')">Clubs</button>
+      <button onclick="show('events')">Events</button>
+      <button onclick="show('sports')">Sports</button>
+      <button onclick="show('tips')">Tips</button>
+      <button onclick="show('campus')">Campus</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Each <section> is one page. Only the one with class "active" is visible. -->
+
+    <section id="quiz" class="active">
+      <h1>What can <em>I do</em> here?</h1>
+      <p class="sub">Answer 4 questions and we match you to clubs on campus.</p>
+      <div id="quiz-box" class="glass box"></div>
+    </section>
+
+    <section id="clubs">
+      <h1>Find your <em>club</em></h1>
+      <p class="sub">Every club and exactly how to join.</p>
+      <div id="club-filters" class="filters"></div>
+      <div id="club-list" class="grid"></div>
+    </section>
+
+    <section id="events">
+      <h1>This week on <em>campus</em></h1>
+      <p class="sub">Upcoming events in date order.</p>
+      <div id="event-list"></div>
+    </section>
+
+    <section id="sports">
+      <h1>Sports <em>arena</em></h1>
+      <p class="sub">Book a slot or find teammates.</p>
+      <div class="two">
+        <div class="glass box">
+          <h2>Book a slot</h2>
+          <div id="facility-buttons" class="filters"></div>
+          <div id="facility-photo"></div>
+          <div id="slot-list" class="slots"></div>
+          <button class="btn" onclick="bookSlot()">Confirm booking</button>
+          <p id="book-msg" class="msg"></p>
+        </div>
+        <div class="glass box">
+          <h2>Find teammates</h2>
+          <div id="post-list"></div>
+          <input id="post-text" placeholder="Need 2 players for badminton">
+          <input id="post-time" placeholder="When? e.g. Sun, 6 PM">
+          <button class="btn" onclick="addPost()">Post request</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h1>Advice from <em>seniors</em></h1>
+      <p class="sub">Short tips from students who have been through it.</p>
+      <div id="tip-list" class="grid"></div>
+    </section>
+
+    <!-- our real photos from campus -->
+    <section id="campus">
+      <h1>Seen on <em>campus</em></h1>
+      <p class="sub">We discovered this on campus, so we built this.</p>
+      <div id="campus-list" class="grid"></div>
+    </section>
+  </main>
+
+  <script src="images.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

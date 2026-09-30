@@ -1,0 +1,218 @@
+/* ==================================================
+   CU SURVIVAL SYSTEM — CURSED ENERGY & DOMAIN ANIMATIONS
+   ================================================== */
+
+/* 1. Page Stagger & Enter */
+@keyframes pageContentEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageContentEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger card delays */
+.stagger-card-1 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both; }
+.stagger-card-2 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.10s both; }
+.stagger-card-3 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both; }
+.stagger-card-4 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.20s both; }
+.stagger-card-5 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both; }
+.stagger-card-6 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.30s both; }
+.stagger-card-7 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+.stagger-card-8 { animation: pageContentEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.40s both; }
+
+/* 2. Cursed Energy Field (Hero background atmospheric glow) */
+@keyframes cursedFloatSlow {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.08);
+    opacity: 0.4;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+}
+
+@keyframes cursedPulseCyan {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.18;
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+    opacity: 0.32;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.18;
+  }
+}
+
+.animate-cursed-orb-purple {
+  animation: cursedFloatSlow 14s ease-in-out infinite;
+}
+
+.animate-cursed-orb-cyan {
+  animation: cursedPulseCyan 12s ease-in-out infinite alternate;
+}
+
+/* 3. Domain Shift Screen Slash */
+@keyframes domainSlash {
+  0% {
+    transform: translateX(-100%) skewX(-24deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%) skewX(-24deg);
+    opacity: 0;
+  }
+}
+
+.animate-domain-slash {
+  animation: domainSlash 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. Click Energy Ripple */
+@keyframes energyRingBurst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.9;
+    border-width: 2px;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3.5);
+    opacity: 0;
+    border-width: 0.5px;
+  }
+}
+
+.animate-click-burst {
+  animation: energyRingBurst 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 5. Domain Lock Expansion (Modal opening effect) */
+@keyframes domainLockRing {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.9;
+    border-color: #00f0ff;
+  }
+  50% {
+    border-color: #c77dff;
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-domain-lock-ring {
+  animation: domainLockRing 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes domainPanelGlow {
+  0% {
+    box-shadow: 0 0 0 rgba(0, 240, 255, 0);
+  }
+  40% {
+    box-shadow: 0 0 35px rgba(0, 240, 255, 0.35), 0 0 60px rgba(157, 78, 221, 0.25);
+  }
+  100% {
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.animate-domain-panel-glow {
+  animation: domainPanelGlow 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 6. First visit intro keyframes */
+@keyframes introEnergyLine {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  50% {
+    width: 100%;
+    opacity: 1;
+    box-shadow: 0 0 20px #00f0ff, 0 0 40px #9d4edd;
+  }
+  100% {
+    width: 100%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes introDomainFlash {
+  0% {
+    background-color: transparent;
+  }
+  30% {
+    background-color: rgba(0, 240, 255, 0.12);
+  }
+  60% {
+    background-color: rgba(157, 78, 221, 0.18);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.animate-intro-line {
+  animation: introEnergyLine 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-domain-flash {
+  animation: introDomainFlash 0.5s ease-out forwards;
+}
+
+/* 7. Cursor hiding when custom cursor is active on pointer-fine devices */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor input,
+  body.has-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+}
+
+/* 8. Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-domain-slash,
+  .animate-click-burst,
+  .animate-cursed-orb-purple,
+  .animate-cursed-orb-cyan,
+  .energy-sweep-line {
+    animation: none !important;
+    display: none !important;
+  }
+}
